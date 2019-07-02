@@ -1,5 +1,5 @@
 import { create } from 'dva-core';
-// import { createLogger } from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import createLoading from 'dva-loading';
 
 let app;
@@ -8,7 +8,7 @@ let dispatch;
 
 function createApp(opt) {
   // redux日志
-  // opt.onAction = [createLogger()];
+  opt.onAction = [createLogger()];
   app = create(opt);
   app.use(createLoading({}));
 
