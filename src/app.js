@@ -2,12 +2,20 @@ import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 import 'taro-ui/dist/style/index.scss'
 
-import configStore from './store'
+// import configStore from './store'
 import Index from './pages/index'
+import dva from './utils/dva'
+import models from './models';
 
 import './app.scss'
 
-const store = configStore()
+const dvaApp = dva.createApp({
+  initialState: {},
+  models: models,
+});
+const store = dvaApp.getStore();
+
+// const store = configStore()
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -19,7 +27,7 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
     ],
     window: {
       backgroundTextStyle: 'light',
