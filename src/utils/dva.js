@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro';
 import { create } from 'dva-core';
 import { createLogger } from 'redux-logger';
 import createLoading from 'dva-loading';
@@ -12,6 +13,10 @@ function createApp(opt) {
   app = create(opt);
   app.use(createLoading({}));
 
+  if (Taro.getEnv() === Taro.ENV_TYPE.ALIPAY) {
+    global = {};
+  }
+  
   if (!global.registered) opt.models.forEach(model => app.model(model));
   global.registered = true;
   app.start();
