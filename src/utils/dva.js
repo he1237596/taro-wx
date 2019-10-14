@@ -1,3 +1,10 @@
+/*
+ * @Author: Chris
+ * @Date: 2019-07-01 17:31:32
+ * @LastEditors: Chris
+ * @LastEditTime: 2019-07-01 17:31:32
+ * @Descripttion: **
+ */
 import Taro from '@tarojs/taro';
 import { create } from 'dva-core';
 import { createLogger } from 'redux-logger';
@@ -16,7 +23,7 @@ function createApp(opt) {
   if (Taro.getEnv() === Taro.ENV_TYPE.ALIPAY) {
     global = {};
   }
-  
+
   if (!global.registered) opt.models.forEach(model => app.model(model));
   global.registered = true;
   app.start();

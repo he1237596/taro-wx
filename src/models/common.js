@@ -1,25 +1,16 @@
+/*
+ * @Author: Chris
+ * @Date: 2019-07-01 18:05:39
+ * @LastEditors: Chris
+ * @LastEditTime: 2019-10-14 23:23:39
+ * @Descripttion: 公共models，比如通知消息类，全局可用
+ */
 import Taro from '@tarojs/taro';
 
 export default {
   namespace: 'common',
   state: {
     number:0
-    // access_token: Taro.getStorageSync('access_token'),
-    // mobile: Taro.getStorageSync('user_info')
-    //   ? Taro.getStorageSync('user_info').mobile
-    //   : '',
-    // nickname: Taro.getStorageSync('user_info')
-    //   ? Taro.getStorageSync('user_info').nickname
-    //   : '',
-    // new_user: Taro.getStorageSync('user_info')
-    //   ? Taro.getStorageSync('user_info').new_user
-    //   : '',
-    // is_has_buy_card: Taro.getStorageSync('user_info')
-    //   ? Taro.getStorageSync('user_info').is_has_buy_card
-    //   : '',
-    // erroMessage: Taro.getStorageSync('user_info')
-    //   ? Taro.getStorageSync('user_info').erroMessage
-    //   : '',
   },
 
   effects: {

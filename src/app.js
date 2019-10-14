@@ -1,3 +1,10 @@
+/*
+ * @Author: Chris
+ * @Date: 2019-07-01 16:25:24
+ * @LastEditors: Chris
+ * @LastEditTime: 2019-10-14 23:37:01
+ * @Descripttion: **
+ */
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 import 'taro-ui/dist/style/index.scss'
@@ -27,27 +34,28 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/login/index',
       'pages/index/index',
     ],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
-    }
+      backgroundTextStyle: 'dark',
+      navigationBarBackgroundColor: '#131A24',//头背景
+      navigationBarTitleText: 'MES',
+      navigationBarTextStyle: 'white',
+    },
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />

@@ -1,4 +1,19 @@
+/*
+ * @Author: Chris
+ * @Date: 2019-07-01 16:21:12
+ * @LastEditors: Chris
+ * @LastEditTime: 2019-10-14 22:49:23
+ * @Descripttion: **
+ */
+const path = require('path');
+
 const config = {
+  // 配置文件别名
+  alias: {
+    '@components': path.resolve(__dirname, '..', 'src/components'),
+    '@utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@services': path.resolve(__dirname, '..', 'src/services')
+  },
   projectName: 'mes-app',
   date: '2019-6-30',
   designWidth: 750,
@@ -18,6 +33,7 @@ const config = {
         }]
       ],
       plugins: [
+        'transform-runtime',//dva effects的*函数编译
         'transform-decorators-legacy',
         'transform-class-properties',
         'transform-object-rest-spread'

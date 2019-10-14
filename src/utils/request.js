@@ -2,7 +2,7 @@
  * @Description: 网络请求
  * @Author: Chris
  * @Date: 2019-07-02 10:51:30
- * @LastEditTime: 2019-07-12 18:08:05
+ * @LastEditTime: 2019-10-14 22:58:11
  * @LastEditors: Chris
  */
 import Taro from '@tarojs/taro'
@@ -43,7 +43,7 @@ export default (options = {}) => {
       ...getExtraHeader(),
     };
   }
-  if (!options.hideLoading) {
+  if (options.loading) {
     Taro.showLoading({
       title: '请稍后',
       mask: true,
@@ -55,7 +55,7 @@ export default (options = {}) => {
     ...options,
     url: options.baseUrl || baseUrl + options.url,
   }).then((res) => {
-    if (!options.hideLoading) {
+    if (options.loading) {
       Taro.hideLoading()
     }
     const { statusCode, data } = res;
