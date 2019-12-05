@@ -2,7 +2,7 @@
  * @Author: Chris
  * @Date: 2019-07-01 16:25:24
  * @LastEditors: Chris
- * @LastEditTime: 2019-10-14 23:35:53
+ * @LastEditTime: 2019-12-05 22:35:56
  * @Descripttion: **
  */
 import Taro, { Component } from '@tarojs/taro'
@@ -30,6 +30,11 @@ export default class Index extends Component {
   change = (i) => {
     const { dispatch, number } = this.props
     const newNumber = number + i
+    // console.log(Taro.requestSubscribeMessage,99999)
+    // Taro.requestSubscribeMessage({
+    //   tmplIds: ['tO6fm1PRh8rHKHN3lqz0sGz2s4s5C_zszVyt6X-rvI0'],
+    //   success (res) { }
+    // })
     dispatch({
       type: 'common/save',
       payload: {
