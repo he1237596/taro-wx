@@ -2,7 +2,7 @@
  * @Author: Chris
  * @Date: 2019-07-01 17:52:01
  * @LastEditors: Chris
- * @LastEditTime: 2019-10-14 23:36:19
+ * @LastEditTime: 2019-10-15 10:00:11
  * @Descripttion: **
  */
 import Taro from '@tarojs/taro';
@@ -13,7 +13,9 @@ export default {
 
   },
 
-  effects: {},
+  effects: {
+    
+  },
 
   reducers: {
     save(state, { payload }) {
