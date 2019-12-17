@@ -1,0 +1,62 @@
+@import "../../common.scss";
+page {
+  // height: 100%;
+  // background: #f0f2f6;
+}
+.main {
+  // position: relative; // height: 100vh;
+  // overflow: hidden;
+  height: 100%;
+  .scroll_box {
+    background: #f0f2f6;
+    box-sizing: border-box;
+    // min-height: 100vh;
+  }
+
+  .content {
+    padding: 16px 16px 0;
+    padding-bottom: 0;
+
+    .list_item {
+      padding: 80px 40px;
+      display: flex; // height: 160px;
+      flex-direction: row;
+      justify-content: space-between;
+      color: #000;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 8px;
+      margin-bottom: 16px;
+
+      .item_wrap {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+
+        .item_content {
+          .item_title {
+            width: 100%;
+            font-size: 28px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.85);
+          }
+        }
+      }
+    }
+
+    .list_item:last-child {
+      margin-bottom: 16px;
+    }
+    // .list_item:last-child {
+    //   margin-bottom: 0;
+    // }
+  }
+
+  .loading_more,
+  .nomore {
+    padding: 16px 0;
+    text-align: center;
+    line-height: 32px;
+    font-size: 24px;
+    color: $text-color-thirdary-dark;
+  }
+}

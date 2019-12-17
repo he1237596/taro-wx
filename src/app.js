@@ -2,7 +2,7 @@
  * @Author: Chris
  * @Date: 2019-07-01 16:25:24
  * @LastEditors: Chris
- * @LastEditTime: 2019-10-14 23:37:01
+ * @LastEditTime: 2019-12-17 18:37:47
  * @Descripttion: **
  */
 import Taro, { Component } from '@tarojs/taro'
@@ -34,6 +34,8 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/list2/index',
+      'pages/list/index',
       'pages/login/index',
       'pages/index/index',
     ],
