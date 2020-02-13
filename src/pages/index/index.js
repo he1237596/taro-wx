@@ -7,17 +7,20 @@ import './index.scss'
 
 @connect(({ counter }) => ({
   counter
-}), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
-}))
+}), { add, dec: minus, asyncAdd }
+// (dispatch) => ({
+//   add () {
+//     dispatch(add())
+//   },
+//   dec () {
+//     dispatch(minus())
+//   },
+//   asyncAdd () {
+//     dispatch(asyncAdd())
+//   }
+// })
+)
+
 export default class Index extends Component {
 
   config = {
@@ -29,6 +32,7 @@ export default class Index extends Component {
   componentDidMount () { 
     console.log(this.$router.params)
     console.log(this.props.counter.num)
+    this.props.asyncAdd(10,(fnParams)=>(console.log(this.props.counter.num, fnParams)))
   }
 
   componentWillUnmount () { }
