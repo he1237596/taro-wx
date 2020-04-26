@@ -1,62 +1,113 @@
-/*
- * @Author: Chris
- * @Date: 2019-07-01 16:25:24
- * @LastEditors: Chris
- * @LastEditTime: 2019-12-05 22:35:56
- * @Descripttion: **
- */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
-import { connect } from '@tarojs/redux'
 import './index.scss'
-
-@connect(({ common }) => ({
-  // loading: true,
-  ...common,
-}))
+import cart from '../../asset/cart.png'
 export default class Index extends Component {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+    enablePullDownRefresh: true,
   }
 
-  componentWillMount() { }
+  constructor(props) {
+    this.state = {
+      data: []
+    }
+  }
 
   componentDidMount() {
-
+    this.refresh();
   }
 
-  change = (i) => {
-    const { dispatch, number } = this.props
-    const newNumber = number + i
-    // console.log(Taro.requestSubscribeMessage,99999)
-    // Taro.requestSubscribeMessage({
-    //   tmplIds: ['tO6fm1PRh8rHKHN3lqz0sGz2s4s5C_zszVyt6X-rvI0'],
-    //   success (res) { }
-    // })
-    dispatch({
-      type: 'common/save',
-      payload: {
-        number: newNumber
-      }
+  refresh = () => {
+    Taro.showLoading({
+      title: 'loading'
+    })
+    Taro.request({
+      url: 'https://rapapi.renqilai.com/app/mock/64/api/v1/homePage'
+    }).then(res => {
+      Taro.hideLoading();
+      this.setState({
+        data: res.data.data
+      })
     })
   }
-
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
+  
+  onPullDownRefresh(){
+    Taro.stopPullDownRefresh();
+    this.refresh();
+  }
 
   render() {
+    const { data } = this.state;
     return (
       <View className='index'>
-        <Text>dev+redux测试</Text>
-        <AtButton className='add_btn' onClick={() => this.change(+1)}>+</AtButton>
-        <AtButton className='dec_btn' onClick={() => this.change(-1)}>-</AtButton>
-        {/* <AtButton className='dec_btn' onClick={this.props.asyncAdd}>async</AtButton> */}
-        <View style={{ textAlign: 'center' }}>{this.props.number}</View>
+        {
+          data.map((item,num) => item.layout === 1 ? <View className='listTop' key={num}>
+            <View className='fieldPanel'>
+              {
+                item.products.map((product, index) => index % 3 === 0 ? <View className='oddProduct' key={index}>
+                  <View className='imgWrap'>
+                    <Image
+                      className='img'
+                      mode='scaleToFill'
+                      src={product.image}
+                    />
+                  </View>
+                  <View className='name'>
+                    {product.name}
+                  </View>
+                  <View className='price'>
+                    ￥{product.price}
+                    <Image className='cart' mode='scaleToFill' src={cart} />
+                  </View>
+                </View> :
+                  <View className='evenProduct' key={index}>
+                    <View className='imgWrap'>
+                      <Image
+                        className='img'
+                        mode='scaleToFill'
+                        src={product.image}
+                        lazyLoad
+                      />
+                    </View>
+                    <View className='name'>
+                      {product.name}
+                    </View>
+                    <View className='price'>
+                      ￥{product.price}
+                      <Image className='cart' mode='scaleToFill' src={cart} />
+                    </View>
+                  </View>
+                )
+              }
+              <View className='more'>查看更多</View>
+            </View>
+          </View> : <View className='listScroll' key={num}>
+              <ScrollView
+                className='scrollview'
+                scrollX
+                scrollWithAnimation
+              >
+                {item.products.map((product, index) =>
+                  <View className='product' key={index}>
+                    <View className='imgWrap'>
+                      <Image
+                        className='img'
+                        mode='scaleToFill'
+                        src={product.image}
+                        lazyLoad
+                      />
+                    </View>
+                    <View className='name'>
+                      {product.name}
+                    </View>
+                    <View className='price'>￥{product.price}<Text className='line'>￥{product.retailPrice}</Text></View>
+                  </View>
+                )}
+              </ScrollView>
+            </View>)
+        }
       </View>
     )
   }
